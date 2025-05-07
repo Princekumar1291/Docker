@@ -1,0 +1,48 @@
+//virtulization vs containerization
+virtulization: create a whole virtual machine on top of a physical machine, thus it takes up a lot of resources
+containerization: create a container on top of a physical machine, which takes up a lot less resources
+
+
+//Docker Architecture
+🔧 1. Docker Engine(Docker application container Engine)
+Docker Engine is the core software that enables all Docker functionalities. It's the runtime that builds and runs containers. It includes three main components:
+
+🐳 2. Docker Daemon (dockerd)
+What it is: It's a background service running on the host machine.
+Role:
+Listens for Docker API requests.
+Manages Docker objects like images, containers, networks, and volumes.
+Can communicate with other Docker daemons for swarm clustering.
+Example: When you run docker run nginx, the Docker CLI sends that command to dockerd, which pulls the image, creates a container, and starts it.
+
+💻 3. Docker CLI
+What it is: A command-line interface tool (docker) that users interact with.
+Role:
+Sends commands to the Docker daemon via the Docker REST API.
+Example commands: docker build, docker run, docker ps, etc.
+
+
+//Docker Installation
+sudo apt install docker.io
+
+//Docker Status
+sudo systemctl status docker
+
+//Docker commands
+docker
+
+
+sudo usermod -aG docker $USER
+🛠️ What It Does
+Adds your user to the docker group.
+Users in the docker group can run Docker commands without using sudo.
+
+
+newgrp docker
+🔍 What It Does
+Applies the group membership change (adding your user to the docker group) immediately in your current terminal session.
+Without logging out and back in, it starts a new shell with docker group privileges.
+
+
+docker ps
+Lists all running Docker containers on your system.
