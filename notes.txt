@@ -46,3 +46,41 @@ Without logging out and back in, it starts a new shell with docker group privile
 
 docker ps
 Lists all running Docker containers on your system.
+
+
+docker file -> docker image -> docker container
+Dockerfile: A text file containing instructions to build a Docker image.
+docker build: The command used to create a Docker image from the Dockerfile.
+Docker Image: A read-only template that includes the application and its dependencies.
+docker run: The command to create and start a container from a Docker image.
+Docker Container: A running instance of a Docker image, providing an isolated environment for the application.
+
+
+docker images
+The docker images command is used to list all Docker images available on your local system.
+
+
+
+docker login
+The docker login command is used to log in to a Docker registry, which is a place where you can store and share Docker images.
+You can use docker login to log in to a Docker registry that you have access to, such as Docker Hub or a private registry hosted on your own server.
+
+
+docker pull <image_name>
+The docker pull command is used to download a Docker image from a Docker registry.
+
+
+🔹To delete a single image by name or ID:
+docker rmi <image_name_or_id>
+ex-> docker rmi javaapp
+or
+To force delete (even if containers use it):
+docker rmi -f <image_name_or_id>
+
+
+docker build -t javaapp .
+The docker build command is used to build a Docker image from a Dockerfile.
+
+
+docker run javaapp
+The docker run command is used to create and start a container from a Docker image.
