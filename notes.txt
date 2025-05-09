@@ -84,3 +84,57 @@ The docker build command is used to build a Docker image from a Dockerfile.
 
 docker run javaapp
 The docker run command is used to create and start a container from a Docker image.
+
+
+💡 Dockerfile Key Instructions
+Command	Description
+FROM	Sets the base image
+WORKDIR	Sets the directory where commands run
+COPY	Copies files from your system to the image
+RUN	Runs a shell command (e.g., compile code)
+CMD	Command to run when container starts
+
+
+FROM openjdk:17-jdk-alpine
+WORKDIR /app
+COPY . .
+# Compile and put .class files directly into /app
+RUN javac -d . src/Main.java
+# Run the Main class (from /app/Main.class)
+CMD ["java", "Main"]
+
+
+python app
+# Base image (OS)
+FROM python:3.9-slim
+# Working directory
+WORKDIR /app
+# Copy src code to container
+COPY . .
+# Run the build commands
+RUN pip install -r requirements.txt
+# expose port 80
+EXPOSE 80
+# serve the app / run the app (keep it running)
+CMD ["python","run.py"]
+
+docker build -t flaskapp .
+docker run -p 80:80 flaskapp  or docker run -d -p 80:80 flaskapp
+ //Maps port 80 on your host (EC2) to port 80 in the container
+
+
+to see the logs of the container -> docker logs -f f5da791f6230 or  docker logs f5da791f6230
+
+docker stop f5da791f6230 -> to stop the container
+
+docker start f5da791f6230 -> to start the container
+
+
+docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql
+
+docker run ->	Tells Docker to create and start a container.
+-d ->	Runs the container in detached mode (in the background).
+--name mysql-container ->	Names the container mysql-container for easy reference.
+-e MYSQL_ROOT_PASSWORD=yourpassword ->	Sets the root password for MySQL using an environment variable (required for initialization).
+-p 3306:3306 ->	Maps port 3306 on your host to port 3306 inside the container (MySQL's default port).
+mysql ->	Specifies the Docker image to use (the official MySQL image from Docker Hub).
